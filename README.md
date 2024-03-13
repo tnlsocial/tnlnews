@@ -1,4 +1,4 @@
-# tnlcalender
+# tnlnews
 A Hacker News clone that can be used to post links to news articles, votes are cast by posting the same news article
 
 ## Development
