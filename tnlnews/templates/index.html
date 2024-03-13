@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% block content %}
+<center>
+  <table
+    id="hnmain"
+    width="100%"
+    cellspacing="0"
+    cellpadding="0"
+    border="0"
+    bgcolor="#f6f6ef"
+  >
+    <tr>
+      <td bgcolor="#7fffd4">
+        <table style="padding: 2px" width="100%" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td style="width: 18px; padding-right: 4px">
+                <a href="/">T</a>
+              </td>
+              <td style="line-height: 12px; height: 10px">
+                <span class="pagetop">
+                  <a href="{{ url_for('index')}}"><b>#tnl News</b></a>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr style="height: 10px"></tr>
+    <tr>
+      <td>
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+            {% if posts %} {% for post in posts |sort(attribute='time_created', reverse=True)%}
+            <tr>
+              <td class="title" valign="top" align="right">
+                <span>{{ loop.index }}.</span>
+              </td>
+              <td valign="top">
+                <center>
+                    <div class="votearrow"></div>
+                </center>
+              </td>
+              <td>
+                <span>
+                  <a class="title" href="{{ post.url }}">{{ post.title }}</a>
+                  <span class="comhead"
+                    ><a href="{{ url_for('domain', domain=post.hostname) }}">{{ post.hostname }}</a></span>
+                  <br />
+                  <span class="subtext">{{ post.votes }} points</span>
+                  <span class="subtext">{{ post.humanized_time }}</span>
+                </span>
+              </td>
+            </tr>
+            {% endfor %} {% endif %}
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    {% if total_pages > 1 %}
+    {% if next_url %}
+    <tr>
+      <td class="title"><a class="title" href="{{ next_url }}" rel="next">More</a></td>    
+    </tr>
+    {% endif %}
+    {% endif %}
+  </table>
+</div>
+</center>
+{% endblock %}

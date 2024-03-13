@@ -1,0 +1,8 @@
+flask
+Flask_SQLAlchemy
+pynacl
+gunicorn
+humanize
+requests
+beautifulsoup4
+lxml
