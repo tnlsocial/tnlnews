@@ -7,28 +7,12 @@ from flask import render_template, abort, request, redirect, flash, url_for, sen
 from urllib.parse import urlparse
 
 from . import db
-from .auth import refrein
 from .models import Post
 from .util import get_title
 
 
 @app.route("/", methods=["GET"])
 def index():
-    current_url = request.url.replace('http://', 'https://', 1)
-    auth = request.args.get('auth', None)
-
-    if auth:
-        if not refrein(auth):
-            return render_template('failure.html', msg="Your auth token did not verify"), 401
-
-    try:
-        cookie = session['name']
-    except:
-        cookie = False
-
-    if not cookie:
-        return render_template('auth.html', current_url=current_url), 401
-
     page = request.args.get('page', 1, type=int)
     per_page = 30  # Number of posts per page
 
@@ -42,21 +26,6 @@ def index():
 
 @app.route("/<domain>", methods=["GET"])
 def domain(domain):
-    current_url = request.url.replace('http://', 'https://', 1)
-    auth = request.args.get('auth', None)
-
-    if auth:
-        if not refrein(auth):
-            return render_template('failure.html', msg="Your auth token did not verify"), 401
-
-    try:
-        cookie = session['name']
-    except:
-        cookie = False
-
-    if not cookie:
-        return render_template('auth.html', current_url=current_url), 401
-
     page = request.args.get('page', 1, type=int)
     per_page = 30  # Number of posts per page
 

@@ -7,9 +7,9 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/tnlnews/db/tnlnews.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/tnlnews/db/tnlnews.db'
     # Local development
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tnlnews.db'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tnlnews.db'
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config['SECRET_KEY'] = 'thisisadummyvaluereplaceitwithsomethinglikeanenvvar!'
     app.config['SESSION_COOKIE_SECURE'] = True
